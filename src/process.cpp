@@ -58,6 +58,7 @@ string Process::User()
 // TODO: Return the age of this process (in seconds)
 long int Process::UpTime()
 {
+
     return LinuxParser::UpTime(pid_)/sysconf(_SC_CLK_TCK);
 }
 
@@ -69,7 +70,4 @@ bool Process::operator < (Process const& a) const
     return a.RAM_ > RAM_;
 
 }
-double Process::Round_(double f)
-{
-    return std::trunc(f);
-}
+
