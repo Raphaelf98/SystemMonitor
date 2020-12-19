@@ -67,7 +67,7 @@ long int Process::UpTime()
 bool Process::operator < (Process const& a) const
 {
 
-    return a.RAM_ > RAM_;
+    return a.CPU_ < CPU_;
 
 }
 
