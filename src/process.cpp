@@ -31,7 +31,7 @@ float Process::CpuUtilization()
     //TODO: compute CPU process util and return percentage
     float total_time = std::stof(numbers[0])+std::stof(numbers[1])+std::stof(numbers[2])+std::stof(numbers[3]);
     float seconds = LinuxParser::UpTime() - LinuxParser::UpTime(pid_)/sysconf(_SC_CLK_TCK);
-    CPU_ = 100*((total_time/sysconf(_SC_CLK_TCK))/seconds);
+    CPU_ = ((total_time/sysconf(_SC_CLK_TCK))/seconds);
     return CPU_;
 
 }
@@ -59,7 +59,7 @@ string Process::User()
 long int Process::UpTime()
 {
 
-    return LinuxParser::UpTime(pid_)/sysconf(_SC_CLK_TCK);
+    return LinuxParser::UpTime() - LinuxParser::UpTime(pid_)/sysconf(_SC_CLK_TCK);
 }
 
 // TODO: Overload the "less than" comparison operator for Process objects
