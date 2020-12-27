@@ -69,7 +69,8 @@ vector<int> LinuxParser::Pids() {
 
 // TODO: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization()
-{std::string line;
+{
+ std::string line;
  float MemTotalUsed, MemFree;
  std::string Type, Quantity;
  std:vector <std::string> mems;
@@ -118,24 +119,6 @@ long LinuxParser::Jiffies()
     return 0;
 }
 
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid[[maybe_unused]])
-{
-    return 0;
-}
-
-// TODO: Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies()
-{
-    return 0;
-}
-
-// TODO: Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies()
-{
-    return 0;
-}
 
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization()
@@ -205,6 +188,7 @@ int LinuxParser::RunningProcesses()
 
 
 }
+
 std::vector<string> LinuxParser::CpuUtilization(int pid)
 {
  std::vector<string> numbers;
@@ -261,10 +245,9 @@ string LinuxParser::Ram(int pid)
         }
     if (value.empty()){value = "0";}
     }
-    //value.pop_back();
-    //value.pop_back();
 
-    return value;//std::to_string(std::stoi(value)/1024);
+
+    return value;
 }
 
 // TODO: Read and return the user ID associated with a process
@@ -289,7 +272,6 @@ string LinuxParser::Uid(int pid)
 
         return value;
 }
-
 // TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::User(int pid)
