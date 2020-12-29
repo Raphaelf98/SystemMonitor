@@ -26,8 +26,8 @@ vector<Process>& System::Processes()
 {
     std::vector<int> pids;
     pids = LinuxParser::Pids();
-    //processes_.clear();
-    for (int i = 0; i < pids.size(); i++)
+    processes_.clear();
+    for (unsigned int i = 0; i < pids.size(); i++)
     {
         Process p;
         p.Pid(pids[i]);

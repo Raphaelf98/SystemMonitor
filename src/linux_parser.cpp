@@ -70,9 +70,9 @@ vector<int> LinuxParser::Pids() {
 // TODO: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization()
 {std::string line;
- float MemTotalUsed, MemFree;
+ float MemTotalUsed;
  std::string Type, Quantity;
- std:vector <std::string> mems;
+ vector <std::string> mems;
  std::ifstream filestream(kProcDirectory+kMeminfoFilename);
  if (filestream.is_open())
  {
@@ -82,21 +82,18 @@ float LinuxParser::MemoryUtilization()
       std::istringstream linestream(line);
       linestream >> Type >> Quantity;
       if (Type == "MemTotal:") {mems.push_back(Quantity);}
-      if (Type == "MemFree:") {mems.push_back(Quantity);}
-      if (Type == "Buffers:") {mems.push_back(Quantity);}
-      if (Type == "Cached:") {mems.push_back(Quantity);}
-      if (Type == "Shmem:") {mems.push_back(Quantity);}
-      if (Type == "SReclaimable:") {mems.push_back(Quantity); break;}
+      if (Type == "MemFree:") {mems.push_back(Quantity); break;}
+
       Quantity.erase();
      }
 
     MemTotalUsed = std::stol(mems[0]) - std::stol(mems[1]);
-    long CachedMem = std::stol(mems[3]) + std::stol(mems[5])-std::stol(mems[4]);
-    long NonCBMem = MemTotalUsed -( std::stol(mems[2]) + CachedMem);
+
 
 
     return (MemTotalUsed/std::stol(mems[0]));
 }
+ return 0;
 }
 // TODO: Read and return the system uptime
 long LinuxParser::UpTime()

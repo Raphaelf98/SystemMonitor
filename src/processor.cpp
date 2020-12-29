@@ -10,7 +10,7 @@ float PrevNonIdle =0;
 
 float Processor::Utilization()
 {
-    float user, nice, system, idle, iowait, irq, softirq, steal, Idle, NonIdle, Total;
+    float  Idle, NonIdle, Total;
     std::vector<std::string> proclist;
     proclist = LinuxParser::CpuUtilization();
 
